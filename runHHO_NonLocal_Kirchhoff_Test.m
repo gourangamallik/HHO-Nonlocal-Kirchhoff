@@ -26,11 +26,11 @@ d_exact = 1/45;
 source = @(x,y) -(1+d_exact)*lap_exact(x,y);
 
 tic;
-maxTn=4;  k=[0:1];
+maxTn=4;  k=[0:2];
 H1err=zeros(maxTn,1);OC_H1=zeros(maxTn-1,1); L2err=zeros(maxTn,1); OC_L2=zeros(maxTn-1,1);
 d_err=zeros(maxTn,1);OC_d=zeros(maxTn-1,1);
 h_l=zeros(maxTn,1);NDOF=zeros(maxTn,1);nIters=zeros(maxTn,1);
-for meshtype=1:2
+for meshtype=1:4
 for p_iter=1:length(k)
     Meshes=strings(1,maxTn);
     for level=1:maxTn
@@ -93,7 +93,7 @@ for p_iter=1:length(k)
             fprintf('%s, k = %d, h = %2.4f | H1Err = %.4e | OC_H1 = %2.3f | L2Err = %.4e | OC_L2 = %2.3f | Iter: %d |\n', mesh, K, h_l(level), H1err(level),OC_H1(level-1), L2err(level),OC_L2(level-1),nIter);
         end
         %% Plot the solution:
-        plot_HHOCellAvg_Soln(hho,uh,u_exact)
+        % plot_HHOCellAvg_Soln(hho,uh,u_exact)
     end
 end
 end
