@@ -44,6 +44,14 @@ runHHO_NonLocal_Kirchhoff_Test.m
 ```
 to reproduce the numerical experiments presented in the paper.
 
+## Paper
+
+The preprint accompanying this repository is available on arXiv:
+
+**A Hybrid High-Order Finite Element Method for a Nonlocal Nonlinear Problem of Kirchhoff Type**
+
+https://arxiv.org/pdf/2510.15574
+
 ## Citation
 
 If you use this code in your research, please cite
