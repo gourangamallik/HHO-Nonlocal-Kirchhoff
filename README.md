@@ -24,6 +24,8 @@ Original repository: https://github.com/jdroniou/HHO-Lapl-OM
 
 The original implementation solves the Poisson model problem using the Hybrid High-Order method and is distributed under the GNU Lesser General Public License (LGPL v3).
 
+The present repository extends this framework to nonlinear nonlocal problems of Kirchhoff type. While the original repository implements the HHO method for the Poisson model problem, this repository develops the HHO discretization, nonlinear solution algorithms, and numerical experiments for the nonlocal Kirchhoff problem.
+
 ## Main Contributions
 
 Building upon the original HHO implementation, this repository introduces
