@@ -4,7 +4,7 @@
 %
 % Author: Gouranga Mallik
 %
-% Last Modification: June-2026
+% Last Modification: July-2026
 % ----------------------------------------------------------------------
 
 %% Nonlocal Kirchoff Problem: 
@@ -28,7 +28,6 @@ source = @(x,y) -(1+d_exact)*lap_exact(x,y);
 tic;
 maxTn=4;  k=[0:2];
 H1err=zeros(maxTn,1);OC_H1=zeros(maxTn-1,1); L2err=zeros(maxTn,1); OC_L2=zeros(maxTn-1,1);
-d_err=zeros(maxTn,1);OC_d=zeros(maxTn-1,1);
 h_l=zeros(maxTn,1);NDOF=zeros(maxTn,1);nIters=zeros(maxTn,1);
 for meshtype=1:4
 for p_iter=1:length(k)
@@ -72,24 +71,22 @@ for p_iter=1:length(k)
         NDOF(level)=ntotal_dofs;
         idofs = setdiff(1:ntotal_dofs,Bd_dofs);
         
-        %Initial Guess
-        %Iuh = HHOInterpolate(hho, u_exact); d=uh'*(aG_global*uh);
-        Prev_u = DiffSolver(hho, AS_local, b_global); Prev_d = Prev_u'*(A_global*Prev_u);
+        %% Choose the Sherman-Morrison-Woodbury or Standard Newton Method
+        Prev_u = DiffSolver(hho, AS_local, b_global); Prev_d = Prev_u'*(A_global*Prev_u); %Initial Guess
         [uh,d,nIter] = SMW_Newton_solver(hho, AS_local, A_global,AS_global, b_global, Prev_u,Prev_d);
         %[uh,d,nIter] = Newton_solver(idofs, A_global,AS_global, b_global, Prev_u,Prev_d);
+
         %% Compute errors
         u_interp = HHOInterpolate(hho, u_exact);
         u_diff = uh - u_interp;
-        H1err(level)=sqrt(u_diff'*(AS_global*u_diff))/sqrt(u_interp'*(AS_global*u_interp));
-        d_err(level)=abs(d_exact-d); 
+        H1err(level)=sqrt(u_diff'*(AS_global*u_diff))/sqrt(u_interp'*(AS_global*u_interp)); 
         L2err(level)=L2Error(hho,M_L2_local, uh,u_exact,'relative');
         nIters(level)=nIter;
         if(level==1)
             fprintf('%s, k = %d, h = %2.4f | H1Err = %.4e |               | L2Err = %.4e |               | Iter: %d |\n', mesh, K, h_l(level), H1err(level),L2err(level),nIter);  
         else
-            OC_H1(level-1)=log(H1err(level-1)/H1err(level))/log(h_l(level-1)/h_l(level));
-            OC_L2(level-1)=log(L2err(level-1)/L2err(level))/log(h_l(level-1)/h_l(level));
-            OC_d(level-1)=log(d_err(level-1)/d_err(level))/log(h_l(level-1)/h_l(level));     
+            OC_H1(level-1)=log(H1err(level)/H1err(level-1))/log(h_l(level)/h_l(level-1));
+            OC_L2(level-1)=log(L2err(level)/L2err(level-1))/log(h_l(level)/h_l(level-1));   
             fprintf('%s, k = %d, h = %2.4f | H1Err = %.4e | OC_H1 = %2.3f | L2Err = %.4e | OC_L2 = %2.3f | Iter: %d |\n', mesh, K, h_l(level), H1err(level),OC_H1(level-1), L2err(level),OC_L2(level-1),nIter);
         end
         %% Plot the solution:
@@ -97,8 +94,3 @@ for p_iter=1:length(k)
     end
 end
 end
-
-
-
-
-
