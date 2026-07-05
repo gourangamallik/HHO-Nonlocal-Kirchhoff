@@ -75,8 +75,8 @@ for p_iter=1:length(k)
         %Initial Guess
         %Iuh = HHOInterpolate(hho, u_exact); d=uh'*(aG_global*uh);
         Prev_u = DiffSolver(hho, AS_local, b_global); Prev_d = Prev_u'*(A_global*Prev_u);
-        %[uh,d,nIter] = SMW_Newton_solver(hho, AS_local, A_global,AS_global, b_global, Prev_u,Prev_d);
-        [uh,d,nIter] = Newton_solver(idofs, A_global,AS_global, b_global, Prev_u,Prev_d);
+        [uh,d,nIter] = SMW_Newton_solver(hho, AS_local, A_global,AS_global, b_global, Prev_u,Prev_d);
+        %[uh,d,nIter] = Newton_solver(idofs, A_global,AS_global, b_global, Prev_u,Prev_d);
         %% Compute errors
         u_interp = HHOInterpolate(hho, u_exact);
         u_diff = uh - u_interp;
