@@ -8,7 +8,7 @@ function [uTF,d,nIter] = SMW_Newton_solver(hho, AS_local, A_global,AS_global, b_
 % ----------------------------------------------------------------------
 Iter_Err=1; nIter=0; tic;TOL=10^(-10); Newton_Err=[]; relax_param=1;
 fprintf("Convergence of the Newton iterations:\n");
-while(Iter_Err>TOL && nIter<40)
+while(Iter_Err>TOL && nIter<50)
     nIter=nIter+1;
     d = Prev_uTF'*(A_global*Prev_uTF); Md=1+d;
     Jc=2*A_global*Prev_uTF;
