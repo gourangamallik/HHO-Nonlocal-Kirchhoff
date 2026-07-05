@@ -54,11 +54,19 @@ https://arxiv.org/pdf/2510.15574
 
 ## Citation
 
-If you use this code in your research, please cite
+If you use this software or any part of its source code, or build upon the methods described in the accompanying paper, please cite:
 
 ```bibtex
-% The BibTeX entry will be added after publication.
+@article{Mallik2025,
+  author  = {Gouranga Mallik},
+  title   = {A Hybrid High-Order Finite Element Method for a Nonlocal Nonlinear Problem of Kirchhoff Type},
+  journal = {arXiv preprint arXiv:2510.15574},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2510.15574}
+}
 ```
+
+Once the paper is published, this citation will be updated with the journal information.
 
 ## License
 
