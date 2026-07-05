@@ -25,10 +25,11 @@ lap_exact=@(x,y) -2*( y-y^2 + x-x^2);
 d_exact = 1/45;
 source = @(x,y) -(1+d_exact)*lap_exact(x,y);
 
+
+for meshtype=1:4   % use parfor for parallel pool
 maxTn=4;  k=[0:2];
 H1err=zeros(maxTn,1);OC_H1=zeros(maxTn-1,1); L2err=zeros(maxTn,1); OC_L2=zeros(maxTn-1,1);
 h_l=zeros(maxTn,1);NDOF=zeros(maxTn,1);nIters=zeros(maxTn,1);
-for meshtype=1:4
 for p_iter=1:length(k)
     Meshes=strings(1,maxTn);
     for level=1:maxTn
