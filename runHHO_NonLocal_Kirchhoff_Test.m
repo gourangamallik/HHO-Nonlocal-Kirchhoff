@@ -29,7 +29,7 @@ source = @(x,y) -(1+d_exact)*lap_exact(x,y);
 for meshtype=1:4   % use parfor for parallel pool
 maxTn=4;  k=[0:2];
 H1err=zeros(maxTn,1);OC_H1=zeros(maxTn-1,1); L2err=zeros(maxTn,1); OC_L2=zeros(maxTn-1,1);
-h_l=zeros(maxTn,1);NDOF=zeros(maxTn,1);nIters=zeros(maxTn,1);
+h_l=zeros(maxTn,1);nIters=zeros(maxTn,1);
 for p_iter=1:length(k)
     Meshes=strings(1,maxTn);
     for level=1:maxTn
@@ -64,17 +64,9 @@ for p_iter=1:length(k)
         end
         [A_global,AS_global,L2Mass_global,L2Mx1_global,b_global,Bd_dofs] = global_A_b(hho, A_local,AS_local,M_L2_local,Mx1_L2_local,b);
 
-        %% Solve the problem
-        ncell_dofs = hho.mesh.ncells * hho.elements{1}.ncell_dofs;
-        nedge_dofs = hho.mesh.nedges * hho.elements{1}.nedge_dofs;
-        ntotal_dofs = ncell_dofs + nedge_dofs;
-        NDOF(level)=ntotal_dofs;
-        idofs = setdiff(1:ntotal_dofs,Bd_dofs);
-        
-        %% Choose the Sherman-Morrison-Woodbury or Standard Newton Method
+        %% Solve by Sherman-Morrison-Woodbury - Newton Method
         Prev_u = DiffSolver(hho, AS_local, b_global); Prev_d = Prev_u'*(A_global*Prev_u); %Initial Guess
         [uh,d,nIter] = SMW_Newton_solver(hho, AS_local, A_global,AS_global, b_global, Prev_u,Prev_d);
-        %[uh,d,nIter] = Newton_solver(idofs, A_global,AS_global, b_global, Prev_u,Prev_d);
 
         %% Compute errors
         u_interp = HHOInterpolate(hho, u_exact);
