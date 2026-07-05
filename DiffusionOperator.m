@@ -2,7 +2,7 @@
 %                        HHO Diffusion Operator
 % ----------------------------------------------------------------------
 %
-% Author: Daniel Anderson
+% Author: Daniel Anderson; Modified by Gouranga Mallik
 %
 % ----------------------------------------------------------------------
 
