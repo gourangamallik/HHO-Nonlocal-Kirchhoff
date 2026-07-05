@@ -8,7 +8,7 @@ function [uTF,d,nIter] = Newton_solver(idofs,A_global,AS_global, b_global, Prev_
 % ----------------------------------------------------------------------
 N=length(b_global); dofs=[idofs, N+1];
 uTF=sparse(N,1);beta=[Prev_uTF;Prev_d];
-Iter_Err=1; nIter=0; tic;TOL=10^(-10); Newton_Err=[];
+Iter_Err=1; nIter=0; tic;TOL=10^(-10);
 fprintf("Convergence of the Newton iterations:\n");
 while(Iter_Err>TOL && nIter<50)
     nIter=nIter+1;
@@ -24,7 +24,6 @@ while(Iter_Err>TOL && nIter<50)
 
     Iter_Err=sqrt((uTF-Prev_uTF)'*(AS_global*(uTF-Prev_uTF)))/(uTF'*(AS_global*uTF));
     Prev_uTF=uTF; Prev_d=d;
-    Newton_Err=[Newton_Err, Iter_Err];
     fprintf('%d  %.4e \n',nIter,Iter_Err);
 end
 end
