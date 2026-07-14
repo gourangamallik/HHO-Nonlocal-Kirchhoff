@@ -60,9 +60,9 @@ If you use this software or any part of its source code, or build upon the metho
 @article{Mallik2025,
   author  = {Gouranga Mallik},
   title   = {A Hybrid High-Order Finite Element Method for a Nonlocal Nonlinear Problem of Kirchhoff Type},
-  journal = {arXiv preprint arXiv:2510.15574},
-  year    = {2025},
-  url     = {https://arxiv.org/abs/2510.15574}
+  journal = {Applied Numerical Mathematics},
+  year    = {2026},
+  url     = {[https://doi.org/10.1016/j.apnum.2026.07.005]}
 }
 ```
 
