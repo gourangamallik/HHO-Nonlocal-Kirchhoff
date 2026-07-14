@@ -50,7 +50,11 @@ The preprint accompanying this repository is available on arXiv:
 
 **A Hybrid High-Order Finite Element Method for a Nonlocal Nonlinear Problem of Kirchhoff Type**
 
+Arxiv version:
 https://arxiv.org/pdf/2510.15574
+
+Applied Numerical Mathematics - Journal Publication:
+https://doi.org/10.1016/j.apnum.2026.07.005
 
 ## Citation
 
@@ -62,7 +66,7 @@ If you use this software or any part of its source code, or build upon the metho
   title   = {A Hybrid High-Order Finite Element Method for a Nonlocal Nonlinear Problem of Kirchhoff Type},
   journal = {Applied Numerical Mathematics},
   year    = {2026},
-  url     = {[https://doi.org/10.1016/j.apnum.2026.07.005]}
+  url     = {https://doi.org/10.1016/j.apnum.2026.07.005}
 }
 ```
 
